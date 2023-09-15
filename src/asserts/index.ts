@@ -5,7 +5,7 @@ import hailIcon from "./Hail.png";
 import heavyCloundIcon from "./HeavyCloud.png";
 import heavyRainIcon from "./HeavyRain.png";
 import lightCloudIcon from "./LightCloud.png";
-import lightRainIcon from "./LightCloud.png";
+import lightRainIcon from "./LightRain.png";
 import showerICon from "./Shower.png";
 import sleetICon from "./Sleet.png";
 import snowIcon from "./Snow.png";

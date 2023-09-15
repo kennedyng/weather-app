@@ -10,6 +10,7 @@ import { setLocation } from "../reduxStore/features/userInputsSlice";
 import { useAppDispatch, useAppSelector } from "../reduxStore/hooks";
 import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
 import { getUnitySymbol } from "@/utils/unitConventer";
+import { getImgSrcByWeatherId } from "@/utils/getImgSrcByWeatherId";
 
 const Summary: React.FC = () => {
   const { open, openDrawer } = useDrawer();
@@ -22,6 +23,10 @@ const Summary: React.FC = () => {
     lon: String(location.lon),
     unity: unit,
   });
+
+  if (!isLoading && error) {
+    throw new Error("Failed to Fetch Data");
+  }
 
   const handleCurrentLoaction = () => {
     if (navigator.geolocation) {
@@ -72,18 +77,24 @@ const Summary: React.FC = () => {
         animate={{ y: 20, opacity: 0.5 }}
         className="self-center  mt-[46px]  mb-[10px] 2xl:mt-[76px]"
       >
-        <Image src={showerICon} alt="shower" width={150} height={174} />
+        <Image
+          src={getImgSrcByWeatherId(data?.weather[0].id)}
+          alt="weather"
+          width={150}
+          height={174}
+          priority
+        />
       </motion.div>
 
       <div className="text-center">
         <h1 className="text-silver font-medium  text-[120px] ">
-          {Math.ceil(data?.main.temp)}
+          {Math.ceil(data?.main.temp ?? 0)}
           <span className="text-[#A09FB1] text-5xl duration-700">
             &deg;{getUnitySymbol(unit)}
           </span>
         </h1>
-        <h5 className="text-2xl text-[#A09FB1] font-semibold mt-[13px]">
-          {data?.weather[0].main}
+        <h5 className="text-2xl text-[#A09FB1] font-semibold mt-[13px] capitalize">
+          {data?.weather[0].description}
         </h5>
 
         <div className="flex flex-row gap-[16px] justify-center text-[#88869D] text-lg mt-[48px] mb-[33px]">

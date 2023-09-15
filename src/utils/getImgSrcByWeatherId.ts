@@ -1,6 +1,9 @@
 import { WEATHER_CODES } from "@/app/constants";
-import { StaticImageData } from "next/image";
 
-const getImgSrcByWeatherId = (weatherId: number) => {
-  console.log(WEATHER_CODES[weatherId]);
+export const getImgSrcByWeatherId = (weatherId: number) => {
+  if (WEATHER_CODES[weatherId]) {
+    return WEATHER_CODES[weatherId];
+  }
+
+  return WEATHER_CODES[800];
 };

@@ -17,7 +17,9 @@ export const UNITS = {
   C: "metric",
 };
 
-export const WEATHER_CODES = {
+type Icon = StaticImageData;
+
+export const WEATHER_CODES: Record<number, Icon> = {
   200: lightRainIcon,
   201: thunderstorm,
   202: thunderstorm,
