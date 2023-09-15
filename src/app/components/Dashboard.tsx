@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   AirePressureCard,
   HumidityCard,
@@ -9,14 +10,23 @@ import {
   WeatherCard,
   WindStatuCard,
 } from ".";
-import Link from "next/link";
-import { Variant, Variants, motion } from "framer-motion";
 import { container, item } from "../amin";
+import { useDispatch } from "react-redux";
+import {
+  setUnitToCelsius,
+  setUnitToKelvin,
+} from "../reduxStore/features/userInputsSlice";
 
 const Dashboard = () => {
-  const handleCelsiusClick = () => {};
+  const dispatch = useDispatch();
 
-  const handleFahrenheitClick = () => {};
+  const handleCelsiusClick = () => {
+    dispatch(setUnitToCelsius());
+  };
+
+  const handleFahrenheitClick = () => {
+    dispatch(setUnitToKelvin());
+  };
   return (
     <div className="bg-darkBlue overflow-scroll w-full h-full min-h-screen flex flex-col xl:px-[100px] xl:max-h-screen">
       <div className="flex flex-row items-center justify-end gap-3 mt-[20px] px-10 xl:px-0">
