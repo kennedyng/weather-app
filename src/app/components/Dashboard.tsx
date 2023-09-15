@@ -17,6 +17,7 @@ import {
 } from "../reduxStore/features/userInputsSlice";
 import { useAppDispatch } from "../reduxStore/hooks";
 import { toast } from "react-toastify";
+import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -28,6 +29,12 @@ const Dashboard = () => {
   const handleFahrenheitClick = () => {
     dispatch(setUnitToKelvin());
   };
+
+  const { isLoading, isFetching, data, error } = useGetCurrentWeatherQuery({
+    lat: "15",
+    lon: "13.",
+  });
+
   return (
     <div className="bg-darkBlue overflow-scroll w-full h-full min-h-screen flex flex-col xl:px-[100px] xl:max-h-screen">
       <div className="flex flex-row items-center justify-end gap-3 mt-[20px] px-10 xl:px-0">
