@@ -1,12 +1,10 @@
+import { UNITS } from "@/app/constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-const UNITS = {
-  F: "kelvin",
-  C: "celsius",
-};
+
 type userInputType = {
   location: {
     lat: string | number;
-    long: string | number;
+    lon: string | number;
   };
 
   unit: string;
@@ -16,7 +14,7 @@ type userInputType = {
 const initialState: userInputType = {
   location: {
     lat: 43,
-    long: 45,
+    lon: 45,
   },
 
   unit: UNITS.C,
@@ -38,9 +36,9 @@ export const userInputs = createSlice({
 
     setLocation: (
       state,
-      action: PayloadAction<{ long: string | number; lat: string | number }>
+      action: PayloadAction<{ lon: string | number; lat: string | number }>
     ) => {
-      state.location.long = action.payload.long;
+      state.location.lon = action.payload.lon;
       state.location.lat = action.payload.lat;
     },
   },

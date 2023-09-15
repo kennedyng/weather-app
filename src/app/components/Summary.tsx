@@ -1,13 +1,46 @@
 "use client";
 
 import { showerICon } from "@/asserts";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { toast } from "react-toastify";
 import { SideBar } from ".";
 import { useDrawer } from "../context";
-import { motion } from "framer-motion";
+import { setLocation } from "../reduxStore/features/userInputsSlice";
+import { useAppDispatch, useAppSelector } from "../reduxStore/hooks";
+import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
+import { getUnitySymbol } from "@/utils/unitConventer";
 
 const Summary: React.FC = () => {
   const { open, openDrawer } = useDrawer();
+
+  const dispatch = useAppDispatch();
+  const { location, unit } = useAppSelector((state) => state.userInputsReducer);
+
+  const { isLoading, isFetching, data, error } = useGetCurrentWeatherQuery({
+    lat: String(location.lat),
+    lon: String(location.lon),
+    unity: unit,
+  });
+
+  const handleCurrentLoaction = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) =>
+          dispatch(
+            setLocation({
+              lat: position.coords.latitude,
+              lon: position.coords.longitude,
+            })
+          ),
+        (error) => {
+          console.error(error);
+        }
+      );
+    } else {
+      toast.warn("Geolocation is not supported by this browser");
+    }
+  };
   return (
     <div className="w-full sticky  flex flex-col  bg-lightBlue px-[11px] py-[18px] min-h-screen lg:max-w-[459px] md:p-[20px] xl:max-h-screen  ">
       <div className="flex flex-row justify-between ">
@@ -19,7 +52,10 @@ const Summary: React.FC = () => {
           Search for places
         </button>
 
-        <button className="text-silver bg-[#6E707A] font-medium h-[40px] w-[40px] text-base rounded-full box__shadow">
+        <button
+          onClick={handleCurrentLoaction}
+          className="text-silver bg-[#6E707A] font-medium h-[40px] w-[40px] text-base rounded-full box__shadow"
+        >
           s
         </button>
       </div>
@@ -41,11 +77,13 @@ const Summary: React.FC = () => {
 
       <div className="text-center">
         <h1 className="text-silver font-medium  text-[120px] ">
-          15
-          <span className="text-[#A09FB1] text-5xl">&deg;C </span>
+          {Math.ceil(data?.main.temp)}
+          <span className="text-[#A09FB1] text-5xl duration-700">
+            &deg;{getUnitySymbol(unit)}
+          </span>
         </h1>
         <h5 className="text-2xl text-[#A09FB1] font-semibold mt-[13px]">
-          Shower
+          {data?.weather[0].main}
         </h5>
 
         <div className="flex flex-row gap-[16px] justify-center text-[#88869D] text-lg mt-[48px] mb-[33px]">
@@ -56,7 +94,7 @@ const Summary: React.FC = () => {
 
         <div className="flex flex-row gap-2 justify-center text-[#88869D] ">
           <span>I</span>
-          <span className="font-semibold">Lusaka</span>
+          <span className="font-semibold">{data?.name}</span>
         </div>
       </div>
     </div>
