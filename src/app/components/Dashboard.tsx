@@ -11,14 +11,15 @@ import {
   WindStatuCard,
 } from ".";
 import { container, item } from "../amin";
-import { useDispatch } from "react-redux";
 import {
   setUnitToCelsius,
   setUnitToKelvin,
 } from "../reduxStore/features/userInputsSlice";
+import { useAppDispatch } from "../reduxStore/hooks";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleCelsiusClick = () => {
     dispatch(setUnitToCelsius());

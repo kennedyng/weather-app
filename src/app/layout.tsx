@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
-import "./globals.css";
-import { DrawerProvider } from "./context";
+import "react-toastify/dist/ReactToastify.css";
 import { Providers } from "./components/Provider";
-
+import "./globals.css";
+import { ToastContainer } from "react-toastify";
 const raleway = Raleway({
   weight: ["100", "200", "400", "700"],
   subsets: ["latin"],
@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={raleway.className}>
         <Providers>{children}</Providers>
+        <ToastContainer />
       </body>
     </html>
   );
