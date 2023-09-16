@@ -16,8 +16,8 @@ import {
   setUnitToKelvin,
 } from "../reduxStore/features/userInputsSlice";
 import { useAppDispatch, useAppSelector } from "../reduxStore/hooks";
-import { toast } from "react-toastify";
 import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
+import { getUnitySymbol } from "@/utils/unitConventer";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -29,6 +29,14 @@ const Dashboard = () => {
   const handleFahrenheitClick = () => {
     dispatch(setUnitToKelvin());
   };
+
+  const { location, unit } = useAppSelector((state) => state.userInputsReducer);
+
+  const { isLoading, isFetching, data, error } = useGetCurrentWeatherQuery({
+    lat: String(location.lat),
+    lon: String(location.lon),
+    unity: unit,
+  });
 
   return (
     <div className="bg-darkBlue overflow-scroll w-full h-full min-h-screen flex flex-col xl:px-[100px] xl:max-h-screen">
@@ -69,13 +77,17 @@ const Dashboard = () => {
         </h3>
 
         <div className="grid grid-cols-1  gap-6  md:grid-cols-2">
-          <WindStatuCard />
-          <HumidityCard />
+          <WindStatuCard
+            value={data?.wind.speed}
+            unit={unit}
+            windDegree={data?.wind.deg}
+          />
+          <HumidityCard value={data?.main.humidity} />
         </div>
 
         <div className="grid grid-cols-1  gap-6  md:grid-cols-2 mt-6">
-          <VisibilityCard />
-          <AirePressureCard />
+          <VisibilityCard value={data?.visibility} />
+          <AirePressureCard value={data?.main.pressure} />
         </div>
 
         <h6 className="text-center text-[#A09FB1] mt-[50px]">

@@ -3,11 +3,14 @@
 import { DrawerProvider } from "../context";
 import { Provider } from "react-redux";
 import { store } from "../reduxStore/store";
+import { CurrentLocationProvider } from ".";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <Provider store={store}>
-      <DrawerProvider>{children}</DrawerProvider>
+      <CurrentLocationProvider>
+        <DrawerProvider>{children}</DrawerProvider>
+      </CurrentLocationProvider>
     </Provider>
   );
 }
