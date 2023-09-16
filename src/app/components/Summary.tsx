@@ -44,6 +44,10 @@ const Summary: React.FC = () => {
     }
   };
 
+  if (error) {
+    throw new Error("failed something went wron");
+  }
+
   let content: ReactNode | null = null;
 
   if (isFetching || isLoading) {
