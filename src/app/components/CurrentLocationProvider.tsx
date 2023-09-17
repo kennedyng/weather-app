@@ -31,7 +31,7 @@ const CurrentLocationProvider: React.FC<Props> = ({ children }) => {
     } else {
       toast.warn("Geolocation is not supported by this browser");
     }
-  }, [location]);
+  }, []);
   return <>{children}</>;
 };
 

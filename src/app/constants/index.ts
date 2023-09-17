@@ -11,6 +11,7 @@ import {
   snowIcon,
   thunderstorm,
 } from "@/asserts";
+import { StaticImageData } from "next/image";
 
 export const UNITS = {
   F: "imperial",
