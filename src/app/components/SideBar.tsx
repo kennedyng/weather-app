@@ -72,7 +72,7 @@ const SideBar: React.FC<Props> = ({ open }) => {
 
   if (locationQuery.isSuccess && locationQuery.data.length === 0) {
     content = (
-      <h5 className="text-center py-2 text-silver font-bold">
+      <h5 className="text-center py-2 text-silver font-medium">
         No Location Found
       </h5>
     );
