@@ -3,6 +3,8 @@
 import { getWindUnity } from "@/utils/unitConventer";
 import React from "react";
 import { motion } from "framer-motion";
+import { MdNavigation } from "react-icons/md";
+
 interface Props {
   value: number;
   unit: string;
@@ -23,9 +25,9 @@ const WindStatuCard: React.FC<Props> = ({ value = 0, unit, windDegree }) => {
           animate={{ rotate: 0 }}
           transition={{ duration: 2, delay: 1 }}
           whileInView={{ rotate: `${windDegree}deg` }}
-          className="w-[29px] h-[29px] rounded-full bg-[#A09FB1]"
+          className="w-[29px] h-[29px] rounded-full bg-[#A09FB1] flex items-center justify-center"
         >
-          ll
+          <MdNavigation className="w-[17px] h-[17px]" />
         </motion.button>
         <span className="text-sm font-medium leading-normal text-silver">
           WVW

@@ -10,7 +10,7 @@ import {
   WeatherCard,
   WindStatuCard,
 } from ".";
-import { container, item } from "../amin";
+import { item } from "../amin";
 import {
   setUnitToCelsius,
   setUnitToKelvin,
@@ -20,7 +20,7 @@ import {
   useGetCurrentWeatherQuery,
   useGetFiveDayForecastQuery,
 } from "../reduxStore/services/weather";
-import { getUnitySymbol } from "@/utils/unitConventer";
+import { UNITS } from "../constants";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -62,8 +62,15 @@ const Dashboard = () => {
   return (
     <div className="bg-darkBlue overflow-scroll w-full h-full min-h-screen flex flex-col xl:px-[100px] xl:max-h-screen">
       <div className="flex flex-row items-center justify-end gap-3 mt-[20px] px-10 xl:px-0">
-        <RoundedButton onClick={handleCelsiusClick}>&deg;C</RoundedButton>
-        <RoundedButton onClick={handleFahrenheitClick}>&deg;F</RoundedButton>
+        <RoundedButton isActive={unit === UNITS.C} onClick={handleCelsiusClick}>
+          &deg;C
+        </RoundedButton>
+        <RoundedButton
+          isActive={unit === UNITS.F}
+          onClick={handleFahrenheitClick}
+        >
+          &deg;F
+        </RoundedButton>
       </div>
       <motion.div
         // initial="hidden"

@@ -14,6 +14,7 @@ import { setLocation } from "../reduxStore/features/userInputsSlice";
 import { useAppDispatch, useAppSelector } from "../reduxStore/hooks";
 import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
 import { MdOutlineMyLocation } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Summary: React.FC = () => {
   const { open, openDrawer } = useDrawer();
@@ -79,14 +80,16 @@ const Summary: React.FC = () => {
           <SideBar open={open} />
           <button
             onClick={openDrawer}
-            className="text-silver bg-[#6E707A] font-medium text-base px-[18px] py-[10px] box__shadow hover:translate-y-2 duration-75 "
+            className="text-silver bg-[#6E707A]  hover:bg-slate-400 font-medium text-base px-[18px] py-[10px] box__shadow hover:translate-y-2 duration-75 "
           >
             Search for places
           </button>
-          <MdOutlineMyLocation
-            onClick={handleCurrentLoaction}
-            className="text-silver bg-[#6E707A] font-medium h-[40px] w-[40px] text-base rounded-full box__shadow"
-          />
+          <button className="flex items-center justify-center text-silver bg-[#6E707A] hover:bg-slate-400 font-medium h-[40px] w-[40px] text-base rounded-full box__shadow">
+            <MdOutlineMyLocation
+              onClick={handleCurrentLoaction}
+              className="h-[22px] w-[22px]"
+            />
+          </button>
         </div>
         <motion.div
           transition={{
@@ -127,7 +130,7 @@ const Summary: React.FC = () => {
           </div>
 
           <div className="flex flex-row gap-2 justify-center text-[#88869D] ">
-            <span>I</span>
+            <FaLocationDot className="h-[22px] w-[22px]" />
             <span className="font-semibold">{data?.name}</span>
           </div>
         </div>
