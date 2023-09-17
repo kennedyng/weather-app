@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useDrawer } from "../context";
 import { setLocation } from "../reduxStore/features/userInputsSlice";
 import { weatherApi } from "../reduxStore/services/weather";
+import { MdNavigateNext, MdClose, MdSearch } from "react-icons/md";
 interface Props {
   open: boolean | false | true;
 }
@@ -59,10 +60,10 @@ const SideBar: React.FC<Props> = ({ open }) => {
               className="group cursor-pointer w-full h-[64px] flex flex-row px-3 justify-between items-center text-silver hover:border-[1px]  duration-100  border-[#616475]"
             >
               <span>{name}</span>
-              <span className="group-hover:hidden inline-block text-xs font-bold ">
+              <i className="group-hover:hidden inline-block text-xs  ">
                 {country}
-              </span>
-              <span className="group-hover:inline-block hidden ">l</span>
+              </i>
+              <MdNavigateNext className="group-hover:inline-block hidden w-[24px] h-[24px] " />
             </li>
           )
         )}
@@ -88,16 +89,19 @@ const SideBar: React.FC<Props> = ({ open }) => {
       }  xl:absolute `}
     >
       <button onClick={closeDrawer} className="text-silver self-end">
-        X
+        <MdClose className="h-[32px] w-[32px]" />
       </button>
-      <div className="mt-[38px] mb-[28px] flex flex-row items-center gap-3">
-        <input
-          type="text"
-          placeholder="seach location"
-          onChange={handleSeachOnChange}
-          value={searchQuery}
-          className="w-[269px] h-[48px] border-silver text-silver border-[1px]  bg-lightBlue hover:right-0 hover:outline-none"
-        />
+      <div className="mt-[38px] mb-[28px] flex flex-row items-center gap-3 ">
+        <div className=" border-[1px] border-silver w-[269px] h-[48px]  flex flex-row items-center px-3 gap-[13px]">
+          <MdSearch className="h-[54px] w-[54px]  text-silver" />
+          <input
+            type="text"
+            placeholder="seach location"
+            onChange={handleSeachOnChange}
+            value={searchQuery}
+            className=" text-silver bg-lightBlue hover:right-0 focus:ring-0 focus:outline-none hover:outline-none"
+          />
+        </div>
         <button
           disabled={locationQuery.isFetching}
           onClick={handleSeach}

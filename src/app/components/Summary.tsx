@@ -13,6 +13,7 @@ import { useDrawer } from "../context";
 import { setLocation } from "../reduxStore/features/userInputsSlice";
 import { useAppDispatch, useAppSelector } from "../reduxStore/hooks";
 import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
+import { MdOutlineMyLocation } from "react-icons/md";
 
 const Summary: React.FC = () => {
   const { open, openDrawer } = useDrawer();
@@ -25,9 +26,9 @@ const Summary: React.FC = () => {
     unity: unit,
   });
 
-  const handleCurrentLoaction = () => {
+  const handleCurrentLoaction = async () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
+      const res = await navigator.geolocation.getCurrentPosition(
         (position) =>
           dispatch(
             setLocation({
@@ -36,11 +37,15 @@ const Summary: React.FC = () => {
             })
           ),
         (error) => {
-          console.error(error);
+          toast("Can't get your Location. Allow browser Loaction", {
+            className: "bg-darkBlue text-silver",
+          });
         }
       );
     } else {
-      toast.warn("Geolocation is not supported by this browser");
+      toast("Geolocation not supported by the browser", {
+        className: "bg-darkBlue text-silver",
+      });
     }
   };
 
@@ -50,7 +55,7 @@ const Summary: React.FC = () => {
 
   let content: ReactNode | null = null;
 
-  if (isFetching || isLoading) {
+  if (isFetching) {
     content = (
       <div className="w-full min-h-screen flex flex-col items-center justify-center gap-2 xl:max-h-screen">
         <MutatingDots
@@ -78,12 +83,10 @@ const Summary: React.FC = () => {
           >
             Search for places
           </button>
-          <button
+          <MdOutlineMyLocation
             onClick={handleCurrentLoaction}
             className="text-silver bg-[#6E707A] font-medium h-[40px] w-[40px] text-base rounded-full box__shadow"
-          >
-            s
-          </button>
+          />
         </div>
         <motion.div
           transition={{

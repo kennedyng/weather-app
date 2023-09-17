@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
+import { Flip, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Providers } from "./components/Provider";
 import "./globals.css";
-import { ToastContainer } from "react-toastify";
 const raleway = Raleway({
   weight: ["100", "200", "400", "700"],
   subsets: ["latin"],
@@ -22,7 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={raleway.className}>
         <Providers>{children}</Providers>
-        <ToastContainer />
+        <ToastContainer
+          position="bottom-left"
+          newestOnTop={false}
+          icon={false}
+          hideProgressBar
+          transition={Flip}
+        />
       </body>
     </html>
   );
