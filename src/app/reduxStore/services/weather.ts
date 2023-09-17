@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseUrl: string = `https://api.openweathermap.org/data/2.5`;
+const baseUrl: string = `https://api.openweathermap.org`;
 
 type ApiParams = {
   lat: string;
@@ -18,7 +18,7 @@ export const weatherApi = createApi({
     getCurrentWeather: builder.query<any, ApiParams>({
       query: ({ lat, lon, unity }) => {
         return {
-          url: "weather",
+          url: "data/2.5/weather",
           params: {
             lat,
             lon,
@@ -32,7 +32,7 @@ export const weatherApi = createApi({
     getFiveDayForecast: builder.query<any, ApiParams>({
       query: ({ lat, lon, unity }) => {
         return {
-          url: "forecast",
+          url: "data/2.5/forecast",
           params: {
             lat,
             lon,
@@ -43,8 +43,24 @@ export const weatherApi = createApi({
         };
       },
     }),
+
+    searchLocation: builder.query<any, { searchQuery: string }>({
+      query: ({ searchQuery }) => {
+        return {
+          url: "geo/1.0/direct",
+          params: {
+            q: searchQuery,
+            limit: 5,
+            appid: process.env.NEXT_PUBLIC_OPENWHEATHER_API_KEY,
+          },
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetCurrentWeatherQuery, useGetFiveDayForecastQuery } =
-  weatherApi;
+export const {
+  useGetCurrentWeatherQuery,
+  useGetFiveDayForecastQuery,
+  useSearchLocationQuery,
+} = weatherApi;
