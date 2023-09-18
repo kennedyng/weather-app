@@ -54,7 +54,7 @@ const Dashboard = () => {
         unit={unit}
         minTemp={data.main.temp_min}
         maxTemp={data.main.temp_max}
-        date={data.sys.dt_text}
+        date={data.dt}
       />
     </motion.div>
   ));
@@ -77,7 +77,7 @@ const Dashboard = () => {
         // whileInView="visible"
         // viewport={{ once: true }}
         // variants={container}
-        className="px-10 py-9 grid grid-cols-2 gap-[26px] lg:grid-cols-4 xl:grid-cols-5 xl:px-0"
+        className="px-10 py-9 grid grid-cols-2 gap-[22px] lg:grid-cols-4 xl:grid-cols-5 xl:px-0"
       >
         {forecastContent}
       </motion.div>

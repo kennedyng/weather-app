@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "../reduxStore/hooks";
 import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
 import { MdOutlineMyLocation } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
+import { CloudBgIcon } from "@/asserts";
 
 const Summary: React.FC = () => {
   const { open, openDrawer } = useDrawer();
@@ -91,6 +92,13 @@ const Summary: React.FC = () => {
             />
           </button>
         </div>
+
+        <Image
+          src={CloudBgIcon}
+          alt="cloud bg"
+          className="absolute top-[60px] left-0  w-full object-fill bg-no-repeat bg-cover  opacity-10"
+        />
+
         <motion.div
           transition={{
             repeat: Infinity,

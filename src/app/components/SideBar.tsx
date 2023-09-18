@@ -6,7 +6,12 @@ import { useDispatch } from "react-redux";
 import { useDrawer } from "../context";
 import { setLocation } from "../reduxStore/features/userInputsSlice";
 import { weatherApi } from "../reduxStore/services/weather";
-import { MdNavigateNext, MdClose, MdSearch } from "react-icons/md";
+import {
+  MdNavigateNext,
+  MdClose,
+  MdSearch,
+  MdOutlineMyLocation,
+} from "react-icons/md";
 interface Props {
   open: boolean | false | true;
 }
@@ -99,7 +104,7 @@ const SideBar: React.FC<Props> = ({ open }) => {
             placeholder="seach location"
             onChange={handleSeachOnChange}
             value={searchQuery}
-            className=" text-silver bg-lightBlue hover:right-0 focus:ring-0 focus:outline-none hover:outline-none"
+            className=" text-silver text-base font-medium bg-lightBlue hover:right-0 focus:ring-0 focus:outline-none hover:outline-none"
           />
         </div>
         <button

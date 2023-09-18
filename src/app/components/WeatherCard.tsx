@@ -21,16 +21,16 @@ const WeatherCard: React.FC<Props> = ({
   weatherId,
 }) => {
   return (
-    <div className=" bg-lightBlue p-[18px] flex flex-col justify-center items-center cursor-pointer  duration-300 hover:translate-y-2">
-      <h4 className="text-silver text-base font-medium">
-        {moment.utc(date).format("MMM Do YY")}
+    <div className=" bg-lightBlue py-[18px]  px-2 flex flex-col justify-center items-center cursor-pointer  duration-300 hover:translate-y-2">
+      <h4 className="text-silver text-base font-medium  leading-normal  ">
+        {moment.unix(date).format("ddd, D MMM")}
       </h4>
       <Image
         src={getImgSrcByWeatherId(weatherId)}
         width={56.439}
         height={62}
         alt=""
-        className="mt-[10px]"
+        className="mt-[10px] w-[66px] h-[62px]"
       />
 
       <div className="text-center flex flex-row gap-4 mt-[31px]">

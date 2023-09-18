@@ -37,6 +37,7 @@ export const weatherApi = createApi({
             lat,
             lon,
             cnt: 5,
+            lang: "en",
             appid: process.env.NEXT_PUBLIC_OPENWHEATHER_API_KEY,
             units: unity,
           },
@@ -51,6 +52,7 @@ export const weatherApi = createApi({
           params: {
             q: searchQuery,
             limit: 5,
+            lang: "en",
             appid: process.env.NEXT_PUBLIC_OPENWHEATHER_API_KEY,
           },
         };

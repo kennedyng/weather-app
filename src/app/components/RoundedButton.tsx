@@ -14,7 +14,7 @@ const RoundedButton: React.FC<Props> = ({
   return (
     <button
       type={type}
-      className={`rounded-full bg-[#A09FB1] h-[40px] w-[40px] font-bold text-silver ${
+      className={`rounded-full  h-[40px] w-[40px] font-bold text-silver ${
         isActive ? "bg-[#A09FB1]" : "bg-[#585676]"
       } ${rest.className}`}
       {...rest}
