@@ -63,13 +63,13 @@ const Summary: React.FC = () => {
         <MutatingDots
           height="100"
           width="100"
-          color="#ffec65"
-          secondaryColor="#6578FF"
+          color="#65ffa5"
+          secondaryColor="#E7E7EB"
           radius="12.5"
           visible={true}
         />
 
-        <code className="font-semibold text-silver">I'm Thinking...</code>
+        <code className="font-semibold text-silver">Please Wait...</code>
       </div>
     );
   }
