@@ -53,7 +53,7 @@ const Dashboard = () => {
     );
   }
 
-  if (forecastQuery.isSuccess) {
+  if (forecastQuery.isSuccess && !forecastQuery.isFetching) {
     content = (
       <motion.div
         initial="hidden"
