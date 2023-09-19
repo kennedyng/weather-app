@@ -18,11 +18,12 @@ export const container: Variants = {
 
 export const item: Variants = {
   hidden: {
-    opacity: 0.5,
-    rotateY: -90,
+    opacity: 0.2,
+    scale: 0.5,
+
     transition: {
       duration: 1,
     },
   },
-  visible: { rotateY: 0, opacity: 1 },
+  visible: { opacity: 1, scale: 1 },
 };

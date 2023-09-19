@@ -10,31 +10,28 @@ import {
   WeatherCard,
   WindStatuCard,
 } from ".";
-import { item } from "../amin";
+import { container, item } from "../amin";
 import {
   setUnitToCelsius,
   setUnitToKelvin,
 } from "../reduxStore/features/userInputsSlice";
 import { useAppDispatch, useAppSelector } from "../reduxStore/hooks";
-import {
-  useGetCurrentWeatherQuery,
-  useGetFiveDayForecastQuery,
-} from "../reduxStore/services/weather";
+import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
 import { UNITS } from "../constants";
+import { useGetFiveDayForecastQuery } from "../reduxStore/services/forecast";
+import { ClearIcon, CloudBgIcon, hailIcon, heavyCloundIcon } from "@/asserts";
+import Image from "next/image";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
-
   const handleCelsiusClick = () => {
     dispatch(setUnitToCelsius());
   };
-
   const handleFahrenheitClick = () => {
     dispatch(setUnitToKelvin());
   };
 
   const { location, unit } = useAppSelector((state) => state.userInputsReducer);
-
   const currentWeatherQuery = useGetCurrentWeatherQuery({
     lat: String(location.lat),
     lon: String(location.lon),
@@ -44,23 +41,48 @@ const Dashboard = () => {
   const forecastQuery = useGetFiveDayForecastQuery({
     lat: String(location.lat),
     lon: String(location.lon),
-    unity: unit,
+    unit,
   });
+  let content: React.ReactNode | null = null;
 
-  const forecastContent = forecastQuery.data?.list.map((data: any) => (
-    <motion.div variants={item} key={data.dt}>
-      <WeatherCard
-        weatherId={data.weather[0].id}
-        unit={unit}
-        minTemp={data.main.temp_min}
-        maxTemp={data.main.temp_max}
-        date={data.dt}
-      />
-    </motion.div>
-  ));
+  let loader: React.ReactNode = null;
 
+  if (forecastQuery.isLoading && currentWeatherQuery.isLoading) {
+    content = (
+      <h5 className="text-lightBlue font-bold text-center my-10">
+        Data Fetching....
+      </h5>
+    );
+  }
+
+  if (forecastQuery.isSuccess) {
+    content = (
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={container}
+        className="px-10 py-9 grid grid-cols-2 gap-[22px] lg:grid-cols-4 xl:grid-cols-5 xl:px-0"
+      >
+        {forecastQuery.data?.days
+          .filter((data: any, i: number) => i !== 0 && i < 6)
+          .map((data: any, i: number) => (
+            <motion.div variants={item} key={data.datetime}>
+              <WeatherCard
+                weatherId={800}
+                unit={unit}
+                minTemp={data.tempmin}
+                maxTemp={data.tempmax}
+                date={data.datetime}
+                isTommorow={i === 0 ? true : false}
+              />
+            </motion.div>
+          ))}
+      </motion.div>
+    );
+  }
   return (
-    <div className="bg-darkBlue overflow-scroll w-full h-full min-h-screen flex flex-col xl:px-[100px] xl:max-h-screen">
+    <div className="bg-darkBlue  overflow-scroll w-full flex flex-col xl:px-[100px] xl:h-screen">
       <div className="flex flex-row items-center justify-end gap-3 mt-[20px] px-10 xl:px-0">
         <RoundedButton isActive={unit === UNITS.C} onClick={handleCelsiusClick}>
           &deg;C
@@ -72,15 +94,8 @@ const Dashboard = () => {
           &deg;F
         </RoundedButton>
       </div>
-      <motion.div
-        // initial="hidden"
-        // whileInView="visible"
-        // viewport={{ once: true }}
-        // variants={container}
-        className="px-10 py-9 grid grid-cols-2 gap-[22px] lg:grid-cols-4 xl:grid-cols-5 xl:px-0"
-      >
-        {forecastContent}
-      </motion.div>
+      {content}
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

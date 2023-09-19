@@ -3,10 +3,8 @@ import { Dashboard, Summary } from "./components";
 
 export default async function Home() {
   return (
-    <main className="flex flex-col lg:flex-row ">
-      <Suspense fallback={<div>Loading</div>}>
-        <Summary />
-      </Suspense>
+    <main className="flex flex-col lg:flex-row min-h-screen">
+      <Summary />
       <Dashboard />
     </main>
   );

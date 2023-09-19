@@ -12,6 +12,7 @@ interface Props {
   minTemp: number;
   maxTemp: number;
   weatherId: number;
+  isTommorow?: boolean | true | false;
 }
 const WeatherCard: React.FC<Props> = ({
   date,
@@ -19,11 +20,12 @@ const WeatherCard: React.FC<Props> = ({
   minTemp,
   maxTemp,
   weatherId,
+  isTommorow,
 }) => {
   return (
     <div className=" bg-lightBlue py-[18px]  px-2 flex flex-col justify-center items-center cursor-pointer  duration-300 hover:translate-y-2">
       <h4 className="text-silver text-base font-medium  leading-normal  ">
-        {moment.unix(date).format("ddd, D MMM")}
+        {isTommorow ? "Tommorow" : moment(date).format("ddd, D MMM")}
       </h4>
       <Image
         src={getImgSrcByWeatherId(weatherId)}

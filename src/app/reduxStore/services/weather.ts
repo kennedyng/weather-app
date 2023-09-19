@@ -29,22 +29,6 @@ export const weatherApi = createApi({
       },
     }),
 
-    getFiveDayForecast: builder.query<any, ApiParams>({
-      query: ({ lat, lon, unity }) => {
-        return {
-          url: "data/2.5/forecast",
-          params: {
-            lat,
-            lon,
-            cnt: 5,
-            lang: "en",
-            appid: process.env.NEXT_PUBLIC_OPENWHEATHER_API_KEY,
-            units: unity,
-          },
-        };
-      },
-    }),
-
     searchLocation: builder.query<any, { searchQuery: string }>({
       query: ({ searchQuery }) => {
         return {
@@ -61,8 +45,4 @@ export const weatherApi = createApi({
   }),
 });
 
-export const {
-  useGetCurrentWeatherQuery,
-  useGetFiveDayForecastQuery,
-  useSearchLocationQuery,
-} = weatherApi;
+export const { useGetCurrentWeatherQuery, useSearchLocationQuery } = weatherApi;

@@ -82,3 +82,7 @@ export const WEATHER_CODES: Record<number, Icon> = {
   803: lightCloudIcon,
   804: lightCloudIcon,
 };
+
+const WEATHER = {
+  Clear: ClearIcon,
+};

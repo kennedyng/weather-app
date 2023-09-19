@@ -29,7 +29,9 @@ const SideBar: React.FC<Props> = ({ open }) => {
     weatherApi.endpoints.searchLocation.useLazyQuery();
 
   const handleSeach = () => {
-    triggerSearch({ searchQuery });
+    if (searchQuery) {
+      triggerSearch({ searchQuery });
+    }
   };
 
   const handleCityClick = (lat: number, lon: number) => {
