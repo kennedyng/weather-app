@@ -106,7 +106,7 @@ const SideBar: React.FC<Props> = ({ open }) => {
             placeholder="seach location"
             onChange={handleSeachOnChange}
             value={searchQuery}
-            className=" text-silver text-base font-medium bg-lightBlue hover:right-0 focus:ring-0 focus:outline-none hover:outline-none"
+            className=" text-silver text-base w-full font-medium bg-lightBlue hover:right-0 focus:ring-0 focus:outline-none hover:outline-none"
           />
         </div>
         <button
