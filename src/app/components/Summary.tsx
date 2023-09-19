@@ -59,7 +59,7 @@ const Summary: React.FC = () => {
 
   if (isFetching) {
     content = (
-      <div className="w-full h-full flex flex-col items-center justify-center gap-2 ">
+      <div className="w-full h-screen flex flex-col items-center justify-center gap-2 ">
         <MutatingDots
           height="100"
           width="100"
@@ -147,7 +147,7 @@ const Summary: React.FC = () => {
   }
 
   return (
-    <div className="w-full sticky  flex flex-col  bg-lightBlue px-[11px] py-[18px] lg:max-w-[459px] md:p-[20px] ">
+    <div className="w-full sticky  flex flex-col min-h-screen bg-lightBlue px-[11px] py-[18px] lg:max-w-[459px] md:p-[20px] ">
       {content}
     </div>
   );
