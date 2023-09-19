@@ -91,16 +91,16 @@ const SideBar: React.FC<Props> = ({ open }) => {
   }
   return (
     <aside
-      className={`bg-lightBlue fixed z-50 top-0 left-0 h-screen w-full flex flex-col px-[46px] py-[10px] duration-300  ${
+      className={`bg-lightBlue fixed z-50 top-0 left-0 h-screen w-full flex flex-col px-2 py-[10px] md:px-[47px] duration-300   ${
         !open ? "-translate-x-full" : "translate-x-0"
-      }  xl:absolute `}
+      }  xl:absolute xl:px-[46px] `}
     >
       <button onClick={closeDrawer} className="text-silver self-end">
         <MdClose className="h-[32px] w-[32px]" />
       </button>
       <div className="mt-[38px] mb-[28px] flex flex-row items-center gap-3 ">
-        <div className=" border-[1px] border-silver w-[269px] h-[48px]  flex flex-row items-center px-3 gap-[13px]">
-          <MdSearch className="h-[54px] w-[54px]  text-silver" />
+        <div className=" border-[1px] border-silver w-full h-[48px] flex flex-row items-center px-3 gap-[13px]">
+          <MdSearch className="h-[24px] w-[24px]  text-silver" />
           <input
             type="text"
             placeholder="seach location"
