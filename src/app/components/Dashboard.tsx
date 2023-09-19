@@ -11,16 +11,14 @@ import {
   WindStatuCard,
 } from ".";
 import { container, item } from "../amin";
+import { UNITS } from "../constants";
 import {
   setUnitToCelsius,
   setUnitToKelvin,
 } from "../reduxStore/features/userInputsSlice";
 import { useAppDispatch, useAppSelector } from "../reduxStore/hooks";
-import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
-import { UNITS } from "../constants";
 import { useGetFiveDayForecastQuery } from "../reduxStore/services/forecast";
-import { ClearIcon, CloudBgIcon, hailIcon, heavyCloundIcon } from "@/asserts";
-import Image from "next/image";
+import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -69,7 +67,7 @@ const Dashboard = () => {
           .map((data: any, i: number) => (
             <motion.div variants={item} key={data.datetime}>
               <WeatherCard
-                weatherId={800}
+                iconString={data.icon}
                 unit={unit}
                 minTemp={data.tempmin}
                 maxTemp={data.tempmax}

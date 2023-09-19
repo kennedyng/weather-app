@@ -11,6 +11,7 @@ import {
   snowIcon,
   thunderstorm,
 } from "@/asserts";
+import { clear } from "console";
 import { StaticImageData } from "next/image";
 
 export const UNITS = {
@@ -83,6 +84,26 @@ export const WEATHER_CODES: Record<number, Icon> = {
   804: lightCloudIcon,
 };
 
-const WEATHER = {
-  Clear: ClearIcon,
+export const WEATHER_CONTIONS_CODES: Record<string, Icon> = {
+  "clear-day": ClearIcon,
+  "clear-night": ClearIcon,
+  cloudy: heavyCloundIcon,
+  fog: heavyCloundIcon,
+  hail: hailIcon,
+  "partly-cloudy-day": lightCloudIcon,
+  "partly-cloudy-night": lightCloudIcon,
+  "rain-snow-showers-day": showerICon,
+  "rain-snow-showers-night": showerICon,
+  "rain-snow": sleetICon,
+  rain: heavyRainIcon,
+  "showers-day": showerICon,
+  "showers-night": showerICon,
+  sleet: sleetICon,
+  "show-showers-day": snowIcon,
+  "show-showers-night": snowIcon,
+  snow: snowIcon,
+  thunder: heavyRainIcon,
+  "thunder-showers-day": showerICon,
+  "thunder-showers-night": showerICon,
+  wind: heavyCloundIcon,
 };

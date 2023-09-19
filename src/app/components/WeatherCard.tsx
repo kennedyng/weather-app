@@ -1,17 +1,18 @@
 import { ClearIcon } from "@/asserts";
+import { getImgSrcByWeatherCondition } from "@/utils/getImgSrcByIconComment";
 import { getImgSrcByWeatherId } from "@/utils/getImgSrcByWeatherId";
 import { getUnitySymbol } from "@/utils/unitConventer";
 import { data } from "autoprefixer";
 import moment from "moment";
 import Image from "next/image";
 import React from "react";
-
+import { motion } from "framer-motion";
 interface Props {
   date: number;
   unit: string;
   minTemp: number;
   maxTemp: number;
-  weatherId: number;
+  iconString: string;
   isTommorow?: boolean | true | false;
 }
 const WeatherCard: React.FC<Props> = ({
@@ -19,7 +20,7 @@ const WeatherCard: React.FC<Props> = ({
   unit,
   minTemp,
   maxTemp,
-  weatherId,
+  iconString,
   isTommorow,
 }) => {
   return (
@@ -27,8 +28,9 @@ const WeatherCard: React.FC<Props> = ({
       <h4 className="text-silver text-base font-medium  leading-normal  ">
         {isTommorow ? "Tommorow" : moment(date).format("ddd, D MMM")}
       </h4>
+
       <Image
-        src={getImgSrcByWeatherId(weatherId)}
+        src={getImgSrcByWeatherCondition(iconString)}
         width={56.439}
         height={62}
         alt=""

@@ -52,7 +52,7 @@ const Summary: React.FC = () => {
   };
 
   if (error) {
-    throw new Error("failed something went wron");
+    throw new Error("failed something went wrong");
   }
 
   let content: ReactNode | null = null;
