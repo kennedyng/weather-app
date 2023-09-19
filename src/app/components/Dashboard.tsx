@@ -47,7 +47,7 @@ const Dashboard = () => {
 
   if (forecastQuery.isLoading && currentWeatherQuery.isLoading) {
     content = (
-      <h5 className="text-lightBlue font-bold text-center my-10">
+      <h5 className="text-silver font-bold text-center my-10">
         Data Fetching....
       </h5>
     );
