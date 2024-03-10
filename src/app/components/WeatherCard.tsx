@@ -24,7 +24,7 @@ const WeatherCard: React.FC<Props> = ({
   isTommorow,
 }) => {
   return (
-    <div className=" bg-lightBlue py-[18px]  px-2 flex flex-col justify-center items-center cursor-pointer  duration-300 hover:translate-y-2">
+    <div className=" bg-lightBlue py-[18px]  px-2 flex flex-col justify-center items-center cursor-pointer  duration-200 hover:translate-y-1">
       <h4 className="text-silver text-base font-medium  leading-normal  ">
         {isTommorow ? "Tommorow" : moment(date).format("ddd, D MMM")}
       </h4>

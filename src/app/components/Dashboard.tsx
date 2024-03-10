@@ -80,7 +80,7 @@ const Dashboard = () => {
     );
   }
   return (
-    <div className="bg-darkBlue  overflow-scroll w-full flex flex-col xl:px-[100px] xl:h-screen">
+    <div className="bg-darkBlue w-full flex flex-col xl:px-[100px] ">
       <div className="flex flex-row items-center justify-end gap-3 mt-[20px] px-10 xl:px-0">
         <RoundedButton isActive={unit === UNITS.C} onClick={handleCelsiusClick}>
           &deg;C

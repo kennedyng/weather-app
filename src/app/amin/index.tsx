@@ -11,17 +11,17 @@ export const container: Variants = {
     opacity: 1,
     transition: {
       when: "beforeChildren",
-      staggerChildren: 0.5,
+      staggerChildren: 0.1,
     },
   },
 };
 
 export const item: Variants = {
   hidden: {
-    opacity: 0.2,
+    opacity: 0.3,
 
     transition: {
-      duration: 1,
+      duration: 0.2,
     },
   },
   visible: { opacity: 1 },
