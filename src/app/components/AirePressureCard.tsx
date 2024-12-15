@@ -1,6 +1,6 @@
 import React from "react";
 interface Props {
-  value: number;
+  value: number | undefined;
 }
 const AirePressureCard: React.FC<Props> = ({ value = 0 }) => {
   return (

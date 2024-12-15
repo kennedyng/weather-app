@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { MdNavigation } from "react-icons/md";
 
 interface Props {
-  value: number;
+  value: number | undefined;
   unit: string;
   windDegree?: number;
 }
@@ -16,7 +16,7 @@ const WindStatuCard: React.FC<Props> = ({ value = 0, unit, windDegree }) => {
       <h4 className="text-silver  font-medium ">Wind status</h4>
       <div className="flex flex-row items-center">
         <h1 className="text-silver font-bold text-[44px]">
-          {Math.floor(value)}
+          {Math.floor(Number(value))}
         </h1>
         <span className="text-silver text-4xl">{getWindUnity(unit)}</span>
       </div>

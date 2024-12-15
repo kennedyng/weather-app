@@ -2,7 +2,7 @@ import React from "react";
 import { Progress } from ".";
 
 interface Props {
-  value: string | number;
+  value: number | undefined;
 }
 const HumidityCard: React.FC<Props> = ({ value }) => {
   return (
