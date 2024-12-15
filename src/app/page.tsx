@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { Dashboard, Summary } from "./components";
 
 export default async function Home() {
