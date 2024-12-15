@@ -10,7 +10,6 @@ interface Props {
 }
 const CurrentLocationProvider: React.FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch();
-  const { location, unit } = useAppSelector((state) => state.userInputsReducer);
 
   useEffect(() => {
     if (navigator.geolocation) {
