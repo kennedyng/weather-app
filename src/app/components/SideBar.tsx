@@ -1,17 +1,12 @@
 "use client";
 
 import React, { ReactNode, useState } from "react";
+import { MdClose, MdNavigateNext, MdSearch } from "react-icons/md";
 import { MutatingDots } from "react-loader-spinner";
 import { useDispatch } from "react-redux";
 import { useDrawer } from "../context";
 import { setLocation } from "../reduxStore/features/userInputsSlice";
 import { weatherApi } from "../reduxStore/services/weather";
-import {
-  MdNavigateNext,
-  MdClose,
-  MdSearch,
-  MdOutlineMyLocation,
-} from "react-icons/md";
 interface Props {
   open: boolean | false | true;
 }
