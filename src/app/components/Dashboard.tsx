@@ -43,8 +43,6 @@ const Dashboard = () => {
   });
   let content: React.ReactNode | null = null;
 
-  let loader: React.ReactNode = null;
-
   if (forecastQuery.isLoading && currentWeatherQuery.isLoading) {
     content = (
       <h5 className="text-silver font-bold text-center my-10">
