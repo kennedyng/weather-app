@@ -1,12 +1,8 @@
-import { ClearIcon } from "@/asserts";
 import { getImgSrcByWeatherCondition } from "@/utils/getImgSrcByIconComment";
-import { getImgSrcByWeatherId } from "@/utils/getImgSrcByWeatherId";
 import { getUnitySymbol } from "@/utils/unitConventer";
-import { data } from "autoprefixer";
 import moment from "moment";
 import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
 interface Props {
   date: number;
   unit: string;
