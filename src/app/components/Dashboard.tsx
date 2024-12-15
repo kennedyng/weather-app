@@ -43,8 +43,6 @@ const Dashboard = () => {
   });
   let content: React.ReactNode | null = null;
 
-  let loader: React.ReactNode = null;
-
   if (forecastQuery.isLoading && currentWeatherQuery.isLoading) {
     content = (
       <h5 className="text-silver font-bold text-center my-10">
@@ -62,20 +60,18 @@ const Dashboard = () => {
         variants={container}
         className="px-10 py-9 grid grid-cols-2 gap-[22px] lg:grid-cols-4 xl:grid-cols-5 xl:px-0"
       >
-        {forecastQuery.data?.days
-          .filter((data: any, i: number) => i !== 0 && i < 6)
-          .map((data: any, i: number) => (
-            <motion.div variants={item} key={data.datetime}>
-              <WeatherCard
-                iconString={data.icon}
-                unit={unit}
-                minTemp={data.tempmin}
-                maxTemp={data.tempmax}
-                date={data.datetime}
-                isTommorow={i === 0 ? true : false}
-              />
-            </motion.div>
-          ))}
+        {forecastQuery.data?.days.map((data: any, i: number) => (
+          <motion.div variants={item} key={data.datetime}>
+            <WeatherCard
+              iconString={data.icon}
+              unit={unit}
+              minTemp={data.tempmin}
+              maxTemp={data.tempmax}
+              date={data.datetime}
+              isTommorow={i === 0 ? true : false}
+            />
+          </motion.div>
+        ))}
       </motion.div>
     );
   }

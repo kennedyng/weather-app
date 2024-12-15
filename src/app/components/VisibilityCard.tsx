@@ -2,7 +2,7 @@ import { getMilesFromkm } from "@/utils/unitConventer";
 import React from "react";
 
 interface Props {
-  value: number;
+  value: number | undefined;
 }
 
 const VisibilityCard: React.FC<Props> = ({ value = 0 }) => {
@@ -11,7 +11,7 @@ const VisibilityCard: React.FC<Props> = ({ value = 0 }) => {
       <h4 className="text-silver  font-medium ">Visibility</h4>
       <div className="flex flex-row items-center">
         <h1 className="text-silver font-bold text-[44px]">
-          {getMilesFromkm(value).toLocaleString("en-US")}
+          {getMilesFromkm(Number(value)).toLocaleString("en-US")}
         </h1>
         <span className="text-silver text-4xl">miles</span>
       </div>

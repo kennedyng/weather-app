@@ -1,3 +1,4 @@
+import { CurrentWeatherModel } from "@/app/models/CurrentWeatherModel";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseUrl: string = `https://api.openweathermap.org`;
@@ -15,7 +16,7 @@ export const weatherApi = createApi({
   }),
 
   endpoints: (builder) => ({
-    getCurrentWeather: builder.query<any, ApiParams>({
+    getCurrentWeather: builder.query<CurrentWeatherModel, ApiParams>({
       query: ({ lat, lon, unity }) => {
         return {
           url: "data/2.5/weather",
