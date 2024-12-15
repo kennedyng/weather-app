@@ -1,9 +1,8 @@
 "use client";
 import React, { ReactNode, useEffect } from "react";
-import { useGetCurrentWeatherQuery } from "../reduxStore/services/weather";
-import { setLocation } from "../reduxStore/features/userInputsSlice";
 import { toast } from "react-toastify";
-import { useAppDispatch, useAppSelector } from "../reduxStore/hooks";
+import { setLocation } from "../reduxStore/features/userInputsSlice";
+import { useAppDispatch } from "../reduxStore/hooks";
 
 interface Props {
   children: ReactNode;
